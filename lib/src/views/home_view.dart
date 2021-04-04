@@ -1,5 +1,6 @@
 import 'package:components/src/providers/menu_provider.dart';
 import 'package:components/src/utils/icon_utils.dart';
+import 'package:components/src/views/alerts_view.dart';
 import 'package:flutter/material.dart';
 
 
@@ -24,7 +25,7 @@ class HomeView extends StatelessWidget{
       builder: ( BuildContext context, AsyncSnapshot <List<dynamic>> snapshot){
         /* Builder return a widget that works with data prevously porccesd */
         return ListView(
-          children: this._createListItems( snapshot.data )
+          children: this._createListItems( snapshot.data, context )
         );
       }
     );
@@ -33,7 +34,7 @@ class HomeView extends StatelessWidget{
    
   }
 
-  List<Widget> _createListItems( List<dynamic> data ){
+  List<Widget> _createListItems( List<dynamic> data, BuildContext context ){
     final List<Widget> opts = [];
 
     data.forEach((opt) { 
@@ -41,7 +42,10 @@ class HomeView extends StatelessWidget{
         title: Text( opt['texto'] ),
         leading: getIcon(opt['icon']),
         trailing: Icon( Icons.arrow_forward_ios_outlined, color: Colors.amber,),
-        onTap: (){},
+        onTap: (){
+          final route = MaterialPageRoute(builder: (context) => AlertView());
+          Navigator.push(context, route);
+        },
       );
       opts..add(temp)
           ..add(Divider());
