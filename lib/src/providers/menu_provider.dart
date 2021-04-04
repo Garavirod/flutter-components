@@ -1,3 +1,4 @@
+import 'dart:convert'; // threating json data
 import 'package:flutter/services.dart' show rootBundle; //in order to read json
 
 class _MenuProvider {
@@ -6,9 +7,11 @@ class _MenuProvider {
     loadData();
   }
 
-  loadData(){
-    rootBundle.loadString('data/menu_opts.json')
-    .then((value) => print(value));
+  Future<List<dynamic>> loadData() async {
+    final data = await rootBundle.loadString('data/menu_opts.json');
+    Map dataMap = json.decode(data);
+    this.options = dataMap['rutas'];    
+    return this.options;
   }
 }
 
