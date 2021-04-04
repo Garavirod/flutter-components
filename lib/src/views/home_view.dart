@@ -43,8 +43,11 @@ class HomeView extends StatelessWidget{
         leading: getIcon(opt['icon']),
         trailing: Icon( Icons.arrow_forward_ios_outlined, color: Colors.amber,),
         onTap: (){
-          final route = MaterialPageRoute(builder: (context) => AlertView());
-          Navigator.push(context, route);
+          /* Routing name mode */
+          Navigator.pushNamed(context, opt['ruta']);
+          /* Routing Page route Mode */
+          /* final route = MaterialPageRoute(builder: (context) => AlertView());
+          Navigator.push(context, route); */
         },
       );
       opts..add(temp)
