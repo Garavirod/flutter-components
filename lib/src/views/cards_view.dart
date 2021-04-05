@@ -11,6 +11,8 @@ class CardView extends StatelessWidget {
         padding: EdgeInsets.all(20),
         children: [        
           this._createCardType1(),
+          SizedBox(height: 30.0,),
+          this._createCardType2(),
         ],),
     );
   }
@@ -34,6 +36,24 @@ class CardView extends StatelessWidget {
               FlatButton(onPressed: (){}, child: Text('Cancel')),
               FlatButton(onPressed: (){}, child: Text('Acept')),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _createCardType2(){
+    return Card(
+      child: Column(
+        children: <Widget> [          
+          FadeInImage(
+            placeholder: AssetImage('assets/jar-loading.gif'),
+            image: NetworkImage('https://miro.medium.com/max/4096/1*ZqhXVUw-E0VfBcC0VaxXRg.jpeg'),            
+            fadeInDuration: Duration( milliseconds: 200),
+          ),
+          Container( 
+            child: Text("I have no idea what I'm doing"),
+            padding: EdgeInsets.all(10.0),
           ),
         ],
       ),
