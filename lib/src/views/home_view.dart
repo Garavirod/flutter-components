@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget{
     // Fururebuilder solve something of type future and draw it
     return FutureBuilder(
       future: menuProvider.loadData(),
-      initialData: [],
+      initialData: [], // data initial unitl future being solved
       builder: ( BuildContext context, AsyncSnapshot <List<dynamic>> snapshot){
         /* Builder return a widget that works with data prevously porccesd */
         return ListView(

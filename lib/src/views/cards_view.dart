@@ -13,6 +13,18 @@ class CardView extends StatelessWidget {
           this._createCardType1(),
           SizedBox(height: 30.0,),
           this._createCardType2(),
+          SizedBox(height: 30.0,),
+          this._createCardType1(),
+          SizedBox(height: 30.0,),
+          this._createCardType2(),
+          SizedBox(height: 30.0,),
+          this._createCardType1(),
+          SizedBox(height: 30.0,),
+          this._createCardType2(),
+          SizedBox(height: 30.0,),
+          this._createCardType1(),
+          SizedBox(height: 30.0,),
+          this._createCardType2(),
         ],),
     );
   }
@@ -20,6 +32,10 @@ class CardView extends StatelessWidget {
   /* Methods */
   Widget _createCardType1(){
     return Card(
+      elevation: 10.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0)
+      ),
       child: Column(
         children: <Widget> [
           ListTile(
@@ -43,13 +59,15 @@ class CardView extends StatelessWidget {
   }
 
   Widget _createCardType2(){
-    return Card(
+    final card =  Container(
       child: Column(
-        children: <Widget> [          
+        children: <Widget> [
+          /* Allows to load an image from tne net using effect loading */          
           FadeInImage(
             placeholder: AssetImage('assets/jar-loading.gif'),
             image: NetworkImage('https://miro.medium.com/max/4096/1*ZqhXVUw-E0VfBcC0VaxXRg.jpeg'),            
             fadeInDuration: Duration( milliseconds: 200),
+            fit: BoxFit.cover,
           ),
           Container( 
             child: Text("I have no idea what I'm doing"),
@@ -57,6 +75,25 @@ class CardView extends StatelessWidget {
           ),
         ],
       ),
+    );
+
+    return Container(
+      decoration: BoxDecoration( //Decoration container
+        borderRadius: BorderRadius.circular(20.0),
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black45,
+            blurRadius: 10.0, // shadhow
+            spreadRadius: 2.0, // show expanction
+            offset: Offset(2.0, 5.0), // x,y
+          )
+        ],
+      ),
+      child: ClipRRect(
+        child: card,
+        borderRadius: BorderRadius.circular(20.0),
+      )
     );
   }
 
