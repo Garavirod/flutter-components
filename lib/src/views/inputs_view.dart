@@ -12,6 +12,8 @@ class _InputViewState extends State<InputView> {
 
   String _name  = "";
   String _email = "";
+  String _date  = "";
+  TextEditingController _inputFieldControlloer = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,8 @@ class _InputViewState extends State<InputView> {
           this._createsEmailInput(),
           Divider(),
           this._createPassword(),
+          Divider(),
+          this._createDateInput( context ),
           Divider(),
           this._createPerson(),
         ],
@@ -107,6 +111,45 @@ class _InputViewState extends State<InputView> {
         setState(() {
           this._email = currValue;          
         });
+      },
+    );
+  }
+
+  _selectDate( BuildContext context ) async {
+    DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: new DateTime.now(),
+      firstDate: new DateTime(2018),
+      lastDate: new DateTime(2025)      
+    );
+
+    /* if a date was picked */
+    if( picked != null){
+      setState(() {
+        this._date = picked.toString();       
+        //asign data to controller related
+        this._inputFieldControlloer.text = this._date; 
+      });
+    }
+  }
+
+  /* Creates a Date Input Picker*/
+  Widget _createDateInput(BuildContext context ){
+    return TextField(    
+      controller: this._inputFieldControlloer, //controller related
+      enableInteractiveSelection: false,  
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),        
+        hintText: 'Birthady',
+        labelText: 'Birthday',        
+        suffixIcon: Icon(Icons.date_range),
+        icon: Icon(Icons.date_range_sharp)
+      ),
+      onTap: (){
+        FocusScope.of(context).requestFocus(new FocusNode()); // remove focus of input
+        this._selectDate(context);
       },
     );
   }
