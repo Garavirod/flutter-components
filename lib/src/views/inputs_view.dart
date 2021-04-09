@@ -139,7 +139,7 @@ class _InputViewState extends State<InputView> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),        
-        hintText: 'Birthady',
+        hintText: 'Birthday',
         labelText: 'Birthday',        
         suffixIcon: Icon(Icons.date_range),
         icon: Icon(Icons.date_range_sharp)
