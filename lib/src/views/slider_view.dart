@@ -9,6 +9,7 @@ class SliderView extends StatefulWidget {
 
 class _SliderViewState extends State<SliderView> {
   double sliderValue = 100.0;
+  bool _lockCheck = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,8 +21,11 @@ class _SliderViewState extends State<SliderView> {
         child: Column(
           children: <Widget> [
             this._createSlider(),
+            this._createCheckBox(),
+            this._createSwitch(),
             Expanded(
-              child: this._insertImage()
+              child: this._insertImage(),
+
             ),
           ],
         )
@@ -40,11 +44,41 @@ class _SliderViewState extends State<SliderView> {
       value: this.sliderValue,
       min: 10.0,
       max: 400.0,
-      onChanged: ( currentVal ){
+      onChanged: (this._lockCheck) ? null : ( currentVal ){ // null alwasy disabled widgets
         setState(() {
           this.sliderValue = currentVal;
         });
       },
+    );
+  }
+
+  Widget _createCheckBox(){
+    /* return Checkbox(value: this._lockCheck, 
+      onChanged: (current){
+        setState(() {
+          this._lockCheck = current;
+        });
+      }
+    ); */
+    return CheckboxListTile(
+      title: Text('Lock slider'),
+      value: this._lockCheck, 
+      onChanged: (current){
+        setState(() {
+          this._lockCheck = current;
+        });
+      }
+    );
+  }
+  Widget _createSwitch(){
+    return SwitchListTile(
+      title: Text('Lock slider'),
+      value: this._lockCheck, 
+      onChanged: (current){
+        setState(() {
+          this._lockCheck = current;
+        });
+      }
     );
   }
 
